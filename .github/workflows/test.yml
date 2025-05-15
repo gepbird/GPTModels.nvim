@@ -18,23 +18,14 @@ jobs:
     - name: Install Neovim
       run: sudo snap install nvim --classic
 
-    - name: Install Plenary
+    - name: Install Neovim plugin dependencies
       run: |
+        mkdir -p $HOME/.local/share/nvim/lazy/
+        pushd $HOME/.local/share/nvim/lazy/
         git clone https://github.com/nvim-lua/plenary.nvim.git
-        mkdir -p $HOME/.local/share/nvim/lazy/
-        mv plenary.nvim $HOME/.local/share/nvim/lazy/
-
-    - name: Install Nui
-      run: |
         git clone https://github.com/MunifTanjim/nui.nvim
-        mkdir -p $HOME/.local/share/nvim/lazy/
-        mv nui.nvim $HOME/.local/share/nvim/lazy/
-
-    - name: Install Telescope
-      run: |
         git clone https://github.com/nvim-telescope/telescope.nvim
-        mkdir -p $HOME/.local/share/nvim/lazy/
-        mv telescope.nvim $HOME/.local/share/nvim/lazy/
+        popd
 
     - name: Run Tests
       run: make test
