@@ -44,7 +44,8 @@ jobs:
 
     - name: Run luacheck type check / linter
       run: |
-        sudo apt-get install lua-check -y --no-install-recommends
+        sudo apt-get install luarocks -y
+        sudo luarocks install luacheck
         make check
 
     - uses: JohnnyMorganz/stylua-action@v4
